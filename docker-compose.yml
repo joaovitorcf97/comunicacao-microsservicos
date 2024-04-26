@@ -1,0 +1,43 @@
+version: '3'
+services:
+  auth-db:
+    image: postgres:16.2-alpine3.19
+    container_name: auth-db
+    restart: always
+    environment:
+      - POSTGRES_DB=auth-db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123456
+    ports:
+     - 5435:5432
+
+  product-db:
+    image: postgres:16.2-alpine3.19
+    container_name: product-db
+    restart: always
+    environment:
+      - POSTGRES_DB=auth-db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123456
+    ports:
+     - 5436:5432
+  
+  sales-db:
+    image: mongo:7.0.8-jammy
+    container_name: sales-db
+    restart: always
+    environment:
+      - MONGODB_DATABASE=auth-db
+      - MONGODB_USER=admin
+      - MONGODB_PASS=123456
+    ports:
+     - 28017:28017
+     - 27017:27017
+  
+  sales_rabbitmq:
+    image: rabbitmq:3-management
+    container_name: sales_rabbitmq
+    ports:
+     - 5672:5672
+     - 25676:25676
+     - 15672:15672
