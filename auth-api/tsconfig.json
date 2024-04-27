@@ -12,6 +12,8 @@
     "paths": {
       "@/*": ["*"]
     },
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
   }
 }
