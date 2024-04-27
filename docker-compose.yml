@@ -33,6 +33,30 @@ services:
     ports:
      - 28017:28017
      - 27017:27017
+
+  auth-api:
+    build: './auth-api'
+    container_name: auth-api
+    environment:
+      - PORT=3000
+    ports:
+     - 3000:3000
+  
+  sales-api:
+    build: './sales-api'
+    container_name: sales-api
+    environment:
+      - PORT=3001
+    ports:
+     - 3001:3001
+
+  product-api:
+    build: './product-api'
+    container_name: product-api
+    environment:
+      - PORT=8080
+    ports:
+     - 8080:8080
   
   sales_rabbitmq:
     image: rabbitmq:3-management
